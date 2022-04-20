@@ -359,6 +359,15 @@ class RelatedDocuments(Formatter):
         self.os = os
         self.version = version
         self.rd = rd
+    def addition_content(self):
+        for i in self.rd:
+            if RelatedDocuments.findURL(i[1]):
+                p = document.add_paragraph(i[0]+'\n',style='List Bullet')
+                RelatedDocuments.add_hyperlink(p,i[1],i[1])
+            else:
+                document.add_paragraph(i[0],style='List Bullet')
+                document.add_paragraph(i[1])
+        return 
     def relatedDocuments_ASR_1000_17_03_03(self):
         document.add_paragraph("This document should be read in association with the relevant publicly available documentation for these devices, including release notes and upgrade guides for the specific version of software being deployed. \n\nThese are available at the following location:")
         p = document.add_paragraph('ASR1000 release notes 17.3.3 \n',style = 'List Bullet')
@@ -538,6 +547,7 @@ class RelatedDocuments(Formatter):
                                   "2017 Feb 1 10:30:28 5596-1 Feb 1 10:30:28 %KERN-0-SYSTEM_MSG: writing reset \n"
                                   "reason 49, - kernel\n"
                                   "______________________________________________________________________________")
+        self.addition_content()
         return
 
 #High Level Project Overview
