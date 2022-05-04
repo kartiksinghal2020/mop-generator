@@ -114,6 +114,12 @@ allProducts = {
             },
             {
                 "Devicename": "ASR 1000",
+                "version": "17.03.05",
+                "typeofdevice": "Router",
+                "os": "IOS XE"
+            },
+            {
+                "Devicename": "ASR 1000",
                 "version": "17.03.02",
                 "typeofdevice": "Router",
                 "os": "IOS XE"
@@ -306,6 +312,16 @@ class TargetProcessSteps:
         document.add_paragraph("Install", style='List Bullet')
         document.add_paragraph("Post-install Verification", style='List Bullet')
         return
+    def targetProcessSteps_ASR_1000_17_03_05(self):
+        document.add_paragraph("The process has two main stages: Preparation and Upgrade. Each of these stages is further divided into several steps: these steps are described below in detail.")
+        document.add_paragraph("Preparation", style='Heading 3')
+        document.add_paragraph("Install Analysis", style='List Bullet')
+        document.add_paragraph("Image Deployment and Validation", style='List Bullet')
+        document.add_paragraph("Upgrade", style='Heading 3')
+        document.add_paragraph("Pre-install Verification", style='List Bullet')
+        document.add_paragraph("Install", style='List Bullet')
+        document.add_paragraph("Post-install Verification", style='List Bullet')
+        return
     def targetProcessSteps_Switch_Catalyst_9600_17_06_02(self):
         document.add_paragraph("The process has two main stages: Preparation and Upgrade. Each of these stages is further divided into several steps: these steps are described below in detail.")
         document.add_paragraph("Preparation", style='Heading 3')
@@ -359,7 +375,7 @@ class RelatedDocuments(Formatter):
         self.os = os
         self.version = version
         self.rd = rd
-    def addition_content(self):
+    def additional_content(self):
         for i in self.rd:
             if RelatedDocuments.findURL(i[1]):
                 p = document.add_paragraph(i[0]+'\n',style='List Bullet')
@@ -381,13 +397,23 @@ class RelatedDocuments(Formatter):
 
         p = document.add_paragraph('ASR1000 Issu upgrade guide\n',style = 'List Bullet')
         RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/routers/asr1000/configuration/guide/chassis/asr1000-software-config-guide/issu-asr.html?referring_site=RE&pos=2&page=https://www.cisco.com/c/en/us/support/routers/asr-1000-series-aggregation-services-routers/products-installation-guides-list.html","https://www.cisco.com/c/en/us/td/docs/routers/asr1000/configuration/guide/chassis/asr1000-software-config-guide/issu-asr.html?referring_site=RE&pos=2&page=https://www.cisco.com/c/en/us/support/routers/asr-1000-series-aggregation-services-routers/products-installation-guides-list.html")
-        for i in self.rd:
-            if RelatedDocuments.findURL(i[1]):
-                p = document.add_paragraph(i[0]+'\n',style='List Bullet')
-                RelatedDocuments.add_hyperlink(p,i[1],i[1])
-            else:
-                document.add_paragraph(i[0],style='List Bullet')
-                document.add_paragraph(i[1])
+        self.additional_content()
+        document.add_page_break()
+        return
+    def relatedDocuments_ASR_1000_17_03_05(self):
+        document.add_paragraph("This document should be read in association with the relevant publicly available documentation for these devices, including release notes and upgrade guides for the specific version of software being deployed. \n\nThese are available at the following location:")
+        p = document.add_paragraph('ASR1000 release notes 17.3.5 \n',style = 'List Bullet')
+        RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/routers/asr1000/release/notes/xe-17-3/asr1000-rel-notes-xe-17-3.html","https://www.cisco.com/c/en/us/td/docs/routers/asr1000/release/notes/xe-17-3/asr1000-rel-notes-xe-17-3.html")
+
+        p = document.add_paragraph('ASR1000 Command Reference \n',style = 'List Bullet')
+        RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/ios/fundamentals/command/reference/cf_book.html","https://www.cisco.com/c/en/us/td/docs/routers/asr1000/install/guide/1001-x/asr1hig-book/pwr_up_init_configuartion.html?referring_site=RE&pos=1&page=https://www.cisco.com/c/en/us/td/docs/routers/asr1000/quick/start/guide/asr1_qs1.html")
+
+        p = document.add_paragraph('ASR1000 Rommon upgrade guide \n',style = 'List Bullet')
+        RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/routers/asr1000/rommon/asr1000-rommon-upg-guide.html#con_46405","https://www.cisco.com/c/en/us/td/docs/routers/asr1000/rommon/asr1000-rommon-upg-guide.html#con_46405")
+
+        p = document.add_paragraph('ASR1000 Issu upgrade guide\n',style = 'List Bullet')
+        RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/routers/asr1000/configuration/guide/chassis/asr1000-software-config-guide/issu-asr.html?referring_site=RE&pos=2&page=https://www.cisco.com/c/en/us/support/routers/asr-1000-series-aggregation-services-routers/products-installation-guides-list.html","https://www.cisco.com/c/en/us/td/docs/routers/asr1000/configuration/guide/chassis/asr1000-software-config-guide/issu-asr.html?referring_site=RE&pos=2&page=https://www.cisco.com/c/en/us/support/routers/asr-1000-series-aggregation-services-routers/products-installation-guides-list.html")
+        self.additional_content()
         document.add_page_break()
         return
     def relatedDocuments_Switch_Catalyst_9600_17_06_02(self):
@@ -395,25 +421,13 @@ class RelatedDocuments(Formatter):
         RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9600/software/release/17-6/release_notes/ol-17-6-9600.html#concept_ycv_jdf_3mb","https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9600/software/release/17-6/release_notes/ol-17-6-9600.html#concept_ycv_jdf_3mb")
         p = document.add_paragraph('Cisco Catalyst 9600 Series Switches, Command Reference\n',style='List Bullet')
         RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9600/software/release/17-6/command_reference/b_176_9600_cr/system_management_commands.html#wp2862294214","https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9600/software/release/17-6/command_reference/b_176_9600_cr/system_management_commands.html#wp2862294214")
-        for i in self.rd:
-            if RelatedDocuments.findURL(i[1]):
-                p = document.add_paragraph(i[0]+'\n',style='List Bullet')
-                RelatedDocuments.add_hyperlink(p,i[1],i[1])
-            else:
-                document.add_paragraph(i[0],style='List Bullet')
-                document.add_paragraph("\t"+i[1])
+        self.additional_content()
         document.add_page_break()
         return
     def relatedDocuments_Switch_Catalyst_9600_17_03_05(self):
         p=document.add_paragraph('Cisco Catalyst 9600 Series Switches Hardware Installation Guide\n',style='List Bullet')
         RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9600/hardware/install/b_9600_hig.html","https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9600/hardware/install/b_9600_hig.html")
-        for i in self.rd:
-            if RelatedDocuments.findURL(i[1]):
-                p = document.add_paragraph(i[0]+'\n',style='List Bullet')
-                RelatedDocuments.add_hyperlink(p,i[1],i[1])
-            else:
-                document.add_paragraph(i[0],style='List Bullet')
-                document.add_paragraph("\t"+i[1])
+        self.additional_content()
         document.add_page_break()
         return
     def relatedDocuments_Switch_Catalyst_9300_17_03_04(self):
@@ -421,13 +435,7 @@ class RelatedDocuments(Formatter):
         RelatedDocuments.add_hyperlink(p,'https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-3/release_notes/ol-17-3-9300.html','https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-3/release_notes/ol-17-3-9300.html')
         p=document.add_paragraph('Cisco Catalyst 9300 Series Switches Hardware Installation Guide\n',style='List Bullet')
         RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/hardware/install/b_c9300_hig.html","https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/hardware/install/b_c9300_hig.html")
-        for i in self.rd:
-            if RelatedDocuments.findURL(i[1]):
-                p = document.add_paragraph(i[0]+'\n',style='List Bullet')
-                RelatedDocuments.add_hyperlink(p,i[1],i[1])
-            else:
-                document.add_paragraph(i[0],style='List Bullet')
-                document.add_paragraph("\t"+i[1])
+        self.additional_content()
         document.add_page_break()
         return
     def relatedDocuments_Switch_Catalyst_9500_17_03_04(self):
@@ -435,13 +443,7 @@ class RelatedDocuments(Formatter):
         RelatedDocuments.add_hyperlink(p,'https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/software/release/17-3/release_notes/ol-17-3-9500.html','https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/software/release/17-3/release_notes/ol-17-3-9500.html')
         p=document.add_paragraph('Cisco Catalyst 9500 Series Switches Hardware Installation Guide\n',style='List Bullet')
         RelatedDocuments.add_hyperlink(p,"https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/hardware/install/b_catalyst_9500_hig.html","https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/hardware/install/b_catalyst_9500_hig.html")
-        for i in self.rd:
-            if RelatedDocuments.findURL(i[1]):
-                p = document.add_paragraph(i[0]+'\n',style='List Bullet')
-                RelatedDocuments.add_hyperlink(p,i[1],i[1])
-            else:
-                document.add_paragraph(i[0],style='List Bullet')
-                document.add_paragraph("\t"+i[1])
+        self.additional_content()
         document.add_page_break()
         return
     def relatedDocuments_Nexus_5548_7_3_6_N1_1_(self):
@@ -2114,6 +2116,16 @@ class InstallAnalysis:
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             print(f"{e}(line {exc_tb.tb_lineno}): Image not Found")
+    
+    def installAnalysis_ASR_1000_17_03_05(self):
+        document.add_paragraph("Certain requirements need to be met before deploying an image onto a device. The Install Analysis phase is a Pass or Fail checklist before the image can be uploaded to a device. This reduces any potential risks that may cause an install failure.\n")
+        r = document.add_paragraph().add_run()
+        try:
+            r.add_picture('caution.jpg',width=Inches(0.3), height=Inches(.3))
+            r.add_text(f'Verify the Flash: or Bootflashmemory have enough space to keep the new {self.os} version before to proceed {self.os} upgrade.')
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            print(f"{e}(line {exc_tb.tb_lineno}): Image not Found")
 
     def installAnalysis_Switch_Catalyst_9600_17_06_02(self):
         document.add_paragraph("Certain requirements need to be met before deploying an image onto a device. The Install Analysis phase is a Pass or Fail checklist before the image can be uploaded to a device. This reduces any potential risks that may cause an install failure.\n")
@@ -2191,6 +2203,37 @@ class IosVersion(Formatter):
                                       '             -             -   network     rw   sftp:\n'
                                       '             -             -   network     rw   https:\n'
                                       '             -             -    opaque     ro   cns:\n')
+    def iosVersion_ASR_1000_17_03_05(self):
+        res = requests.get('https://www.cisco.com/c/en/us/td/docs/routers/asr1000/install/guide/1001-x/asr1hig-book/pwr_up_init_configuartion.html?referring_site=RE&pos=1&page=https://www.cisco.com/c/en/us/td/docs/routers/asr1000/quick/start/guide/asr1_qs1.html')
+        soup = BeautifulSoup(res.text, 'lxml')
+        try:
+            elem = soup.select('#con_1111409 > section > pre:nth-child(11) > code')
+            IosVersion.funTable(elem[0].text)
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            print(f"{e}(line {exc_tb.tb_lineno}): Some data is missing in 'IOS Version' section.")
+        document.add_paragraph('\n')
+        IosVersion.funTable('Router#show file system\n'
+                                      'File Systems:\n'
+                                      '       Size(b)       Free(b)      Type  Flags  Prefixes\n'
+                                      '             -             -    opaque     rw   system:\n'
+                                      '             -             -    opaque     rw   tmpsys:\n'
+                                      '*  16420106240   15099944960      disk     rw   bootflash: flash\n'
+                                      '    1524695040    1445007360      disk     ro   webui:\n'
+                                      '             -             -    opaque     rw   null:\n'
+                                      '             -             -    opaque     ro   tar:\n'
+                                      '             -             -   network     rw   tftp:\n'
+                                      '      33554432      33551308     nvram     rw   nvram:\n'
+                                      '             -             -    opaque     wo   syslog:\n'
+                                      '             -             -   network     rw   rcp:\n'
+                                      '             -             -   network     rw   pram:\n'
+                                      '             -             -   network     rw   http:\n'
+                                      '             -             -   network     rw   ftp:\n'
+                                      '             -             -   network     rw   scp:\n'
+                                      '             -             -   network     rw   sftp:\n'
+                                      '             -             -   network     rw   https:\n'
+                                      '             -             -    opaque     ro   cns:\n')
+
     def iosVersion_Switch_Catalyst_9600_17_06_02(self):
         res = requests.get('https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9600/software/release/17-6/release_notes/ol-17-6-9600.html#concept_ycv_jdf_3mb')
         soup = BeautifulSoup(res.text, 'lxml')
@@ -2496,6 +2539,27 @@ class AvailableDram(Formatter):
                                       '             -             -   network     rw   sftp:\n'
                                       '             -             -   network     rw   https:\n'
                                       '             -             -    opaque     ro   cns:\n')
+    def availableDram_ASR_1000_17_03_05(self):
+        return AvailableDram.funTable('Router#show file system\n'
+                                      'File Systems:\n'
+                                      '       Size(b)       Free(b)      Type  Flags  Prefixes\n'
+                                      '             -             -    opaque     rw   system:\n'
+                                      '             -             -    opaque     rw   tmpsys:\n'
+                                      '*  16420106240   15099944960      disk     rw   bootflash: flash\n'
+                                      '    1524695040    1445007360      disk     ro   webui:\n'
+                                      '             -             -    opaque     rw   null:\n'
+                                      '             -             -    opaque     ro   tar:\n'
+                                      '             -             -   network     rw   tftp:\n'
+                                      '      33554432      33551308     nvram     rw   nvram:\n'
+                                      '             -             -    opaque     wo   syslog:\n'
+                                      '             -             -   network     rw   rcp:\n'
+                                      '             -             -   network     rw   pram:\n'
+                                      '             -             -   network     rw   http:\n'
+                                      '             -             -   network     rw   ftp:\n'
+                                      '             -             -   network     rw   scp:\n'
+                                      '             -             -   network     rw   sftp:\n'
+                                      '             -             -   network     rw   https:\n'
+                                      '             -             -    opaque     ro   cns:\n')
     def availableDram_Switch_Catalyst_9600_17_06_02(self):
         document.add_paragraph('The below command displays the amount space available within flash. When copying over the new image to the device this is where the image is kept. It may be necessary to delete existing files from the device to free up more space. Use the show file system privileged EXEC command to list all file systems')
         AvailableDram.funTable('Switch# show file systems\n'
@@ -2669,6 +2733,15 @@ class ImageDeploymentAndValidation(Formatter):
                                                 '................................ ...........Done! \n'
                                                 'verify /md5 (flash: asr1000rpx86-universalk9.17.03.03.SPA.bin) =08c4c732e70ae272980fbbe092d8debb')
         document.add_page_break()
+    
+    def imageDeploymentAndValidation_ASR_1000_17_03_05(self):
+        document.add_paragraph("The Image Deployment is when the NCE engineer has verified that the device/devices have passed their relevant analysis checks and are ready to perform an image deployment onto the device.")
+        p = document.add_paragraph('Log onto:', style='List Number 2')
+        ImageDeploymentAndValidation.add_hyperlink(p, 'https://software.cisco.com/download/navigator.html?mode=home',' https://software.cisco.com/download/navigator.html?mode=home ')
+        document.add_paragraph('Go to software download page and map to Download Home and map to the relevant image for the upgrade ', style='List Number 2')
+        document.add_paragraph('Take a note of the MD5 checksum and download the new image file. ',   style='List Number 2')
+        document.add_paragraph('Run the below command: ',   style='List Number 2')
+        document.add_page_break()
 
     def imageDeploymentAndValidation_Switch_Catalyst_9600_17_06_02(self):
         document.add_paragraph("The Image Deployment is when the NCE engineer has verified that the device/devices have passed their relevant analysis checks and are ready to perform an image deployment onto the device.")
@@ -2760,6 +2833,19 @@ class BackupCurrentConfiguration(Formatter):
                                             '\nDestination filename [router-confg]?')
         document.add_page_break()
         return
+    def backupCurrentConfiguration_ASR_1000_17_03_05(self):
+        BackupCurrentConfiguration.funTable('Router#copy running-config startup-config'
+                                            '\nDestination filename [startup-config]? '
+                                            '\nBuilding configuration...'
+                                            '\n[OK]'
+                                            '\nRouter#copy runn'
+                                            '\nRouter#copy start          '
+                                            '\nRouter#copy startup-config tftp'
+                                            '\nRouter#copy startup-config tftp:'
+                                            '\nAddress or name of remote host []? 10.197.65.24'
+                                            '\nDestination filename [router-confg]?')
+        document.add_page_break()
+        return
                                             
 class LimitationsAndRestrictions(Formatter):
     def __init__(self,os,version,lr):
@@ -2783,6 +2869,10 @@ class LimitationsAndRestrictions(Formatter):
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             print(f"{e}(line {exc_tb.tb_lineno}): Some data is missing in 'Limitations and Restrictions' section.")
+        document.add_page_break()
+        return
+    def limitationsAndRestrictions_ASR_1000_17_03_05(self):
+        
         document.add_page_break()
         return
     def limitationsAndRestrictions_Switch_Catalyst_9600_17_06_02(self):
@@ -3004,6 +3094,63 @@ class PreInstallVerification(Formatter):
                    '\n42 666764156 Apr 19 2021 01:52:10 +00:00 /bootflash/asr1000rp2-advipservices.03.16.10.S.155-3.S10-ext.bin')
         document.add_page_break()
         return
+    def preInstallVerification_ASR_1000_17_03_05(self):
+        PreInstallVerification.funTable('!\n'
+                                        'terminal length 0\n'
+                                        'show run\n'
+                                        'show version\n'
+                                        'show cdp neighbors\n'
+                                        'show cdp neighbors detail\n'
+                                        'show etherchannel summary\n'
+                                        'show ip interface brief\n'
+                                        'show ip interface brief | inc up\n'
+                                        'show interface status\n'
+                                        'show interface status | i connected\n'
+                                        'show interface\n'
+                                        'Show bfd neighbor\n'
+                                        'show bfd drops\n'
+                                        'show mac address-table\n'
+                                        'show ip arp\n'
+                                        'show vlan\n'
+                                        'show vlan brief\n'
+                                        'show spanning-tree\n'
+                                        'show interfaces trunk\n'
+                                        'show standby bri\n'
+                                        'Show ip route\n'
+                                        'show ip route summ\n'
+                                        'Show ip ospf nei\n'
+                                        'Show ip ospf interface\n'
+                                        'show ip ospf database\n'
+                                        'show ip bgp\n'
+                                        'show ip bgp summ\n'
+                                        'show udld neighbors\n'
+                                        'show ntp status\n'
+                                        'show controllers\n'
+                                        'show env status\n'
+                                        'show redundancy\n'
+                                        'show platform\n'
+                                        'Show inventory\n'
+                                        'show diagnostic status\n'
+                                        'show diagnostic events\n'
+                                        'show proc cpu history\n'
+                                        'show proc cpu sorted\n'
+                                        'show proc cpu\n'
+                                        'show log\n'
+                                        'term len 30')
+        document.add_paragraph('\n')
+        PreInstallVerification.funTable('ASR1002-1#sh bootflash: | i .bin'
+                   '\n18 393419388 Oct 09 2019 21:56:37 +00:00 /bootflash/asr1000rp1-advipservicesk9.03.16.06.S.155-3.S6-ext.bin'
+                   '\n24 389286512 Jun 21 2021 22:38:49 +00:00 /bootflash/asr1000rp1-adventerprise.03.16.10.S.155-3.S10-ext.bin'
+                   '\n27 395158140 Aug 31 2020 14:29:31 +00:00 /bootflash/asr1000rp1-adventerprisek9.03.16.08.S.155-3.S8-ext.bin'
+                   '\n28 371004028 Oct 27 2020 12:43:12 +00:00 /bootflash/asr1000rp1-adventerprisek9.03.13.04.S.154-3.S4-ext.bin'
+                   '\n29 759926681 Oct 07 2020 20:27:36 +00:00 /bootflash/asr1000-universalk9.16.09.05.SPA.bin'
+                   '\n32 387019376 Jan 27 2021 07:05:15 +00:00 /bootflash/asr1000rp1-adventerprise.03.16.02.S.155-3.S2-ext.bin'
+                   '\n33 459892152 Feb 16 2021 21:12:03 +00:00 /bootflash/asr1002x-universal.03.16.09.S.155-3.S9-ext.SPA.bin'
+                   '\n34 347124348 Dec 19 2020 18:49:26 +00:00 /bootflash/asr1000rp1-adventerprisek9.03.10.05.S.153-3.S5-ext.bin'
+                   '\n35 395094652 Apr 16 2021 11:54:36 +00:00 /bootflash/asr1000rp1-adventerprisek9.03.16.10.S.155-3.S10-ext.bin'
+                   '\n42 666764156 Apr 19 2021 01:52:10 +00:00 /bootflash/asr1000rp2-advipservices.03.16.10.S.155-3.S10-ext.bin')
+        document.add_page_break()
+        return
     def preInstallVerification_Switch_Catalyst_9600_17_06_02(self):
         document.add_paragraph('It’s important to collect a baseline of the device’s state, allowing us to verify its correct operation once the upgrade has been completed. This information can be collected using a set of CLI commands and logged to a text file: as soon as the upgrade is completed, the same set of CLI commands can be run again, and the output compared with that gathered prior to the upgrade.')
         document.add_paragraph('When the install analysis checks have been reviewed by an NCE engineer the Pre verification script can now be ran.')
@@ -3118,6 +3265,16 @@ class InstallAndReload:
         self.os = os
         self.version = version
     def installAndReload_ASR_1000_17_03_03(self):
+        document.add_paragraph("After the Pre-install verification script checks have been completed and reviewed by an NCE engineer,the Install and reload script is the next step for completing the upgrade.")
+        r = document.add_paragraph().add_run()
+        try:
+            r.add_picture('timesaver.jpg', width=Inches(0.3), height=Inches(.3))
+            r.add_text(' The install process takes around 20-30 minutes which is the time taken for the network to be disruptive.')
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            print(f"{e}(line {exc_tb.tb_lineno}): Image not Found")
+        return
+    def installAndReload_ASR_1000_17_03_05(self):
         document.add_paragraph("After the Pre-install verification script checks have been completed and reviewed by an NCE engineer,the Install and reload script is the next step for completing the upgrade.")
         r = document.add_paragraph().add_run()
         try:
@@ -3492,6 +3649,16 @@ class RommonUpgrade(Formatter):
         self.os = os
         self.version = version
     def rommonUpgrade_ASR_1000_17_03_03(self):
+        document.add_paragraph('The following sequence of commands is an example of the procedure to upgrade the ROMmon for all the RPs, ESPs, MIPs, and SIPs on a router:')
+        resp = requests.get('https://www.cisco.com/c/en/us/td/docs/routers/asr1000/rommon/asr1000-rommon-upg-guide.html#con_46405')
+        try:
+            soup = BeautifulSoup(resp.text, 'lxml')
+            elem = soup.select('#con_59000 > div > pre')
+            RommonUpgrade.funTable(elem[0].text)
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            print(f"{e}(line {exc_tb.tb_lineno}): Some data is missing in 'Rommon Upgrade' section")
+    def rommonUpgrade_ASR_1000_17_03_05(self):
         document.add_paragraph('The following sequence of commands is an example of the procedure to upgrade the ROMmon for all the RPs, ESPs, MIPs, and SIPs on a router:')
         resp = requests.get('https://www.cisco.com/c/en/us/td/docs/routers/asr1000/rommon/asr1000-rommon-upg-guide.html#con_46405')
         try:
@@ -4805,6 +4972,37 @@ class OsUpgrade(Formatter):
                            "8388608K bytes of physical memory.\n"
                            "6594559K bytes of eUSB flash at bootflash:.\n\n\n"
                            "Press RETURN to get started!")
+    def osUpgrade_ASR_1000_17_03_05(self):
+        p = document.add_paragraph("\n")
+        p.add_run('Step 1').bold = True
+        p.add_run(" Copy new image to flash\nCopy the system image to the master switch flash memory with a transfer protocol. You can use ftp:,\ntftp:, scp:, or sftp:. The examples in this procedure uses TFTP:").italic = False 
+        OsUpgrade.funTable("")
+        document.add_paragraph("Use dir flash: to confirm that the image has been successfully copied to flash.") 
+        OsUpgrade.funTable("")          
+        p = document.add_paragraph("\n")
+        p.add_run('Step 2').bold = True
+        p.add_run(" Set boot variable").italic = False
+        OsUpgrade.funTable('')
+        r = document.add_paragraph('\n').add_run()
+        try:
+            r.add_picture('note.jpg',width=Inches(0.3), height=Inches(.3))
+            r.add_text('We can add once again the boot statement for the old version in order to have a backup version for the device to use in case of it not able to boot with the new one.')
+        except OSError as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            print(f"{e}(line {exc_tb.tb_lineno}): Image not Found...")
+        OsUpgrade.funTable("")
+        p = document.add_paragraph('\n')
+        p.add_run('Step 3').bold = True
+        p.add_run(" write memory\nUse this command to save boot settings.").italic = False 
+        OsUpgrade.funTable("")
+        p = document.add_paragraph("\n")
+        p.add_run('Step 4').bold = True
+        p.add_run(" show bootvar or show boot\nUse this command to verify the boot variable (packages.conf) and manual boot setting (no):").italic = False 
+        OsUpgrade.funTable("")
+        p = document.add_paragraph("\n")
+        p.add_run('Step 5').bold = True
+        p.add_run(" reload").italic = False
+        OsUpgrade.funTable("")
     def osUpgrade_Switch_Catalyst_9600_17_06_02(self):
         return
 
@@ -4814,6 +5012,16 @@ class RollbackProcedure(Formatter):
         self.os = os
         self.version = version
     def rollbackProcedure_ASR_1000_17_03_03(self):
+        document.add_paragraph('Please follow the outline below if rollback is needed.')
+        document.add_paragraph('Remove old boot statement with no boot system',style='List Number 2')
+        document.add_paragraph('Update boot statement to reflect original IOS-XE release. ',style='List Number 2')
+        document.add_paragraph('Show run to confirm boot statement',style='List Number 2')
+        document.add_paragraph('Copy run start',style='List Number 2')
+        document.add_paragraph('Verify boot variables with ‘show bootvar’',style='List Number 2')
+        document.add_paragraph('Reload the router ',style='List Number 2')
+        document.add_page_break()
+        return
+    def rollbackProcedure_ASR_1000_17_03_05(self):
         document.add_paragraph('Please follow the outline below if rollback is needed.')
         document.add_paragraph('Remove old boot statement with no boot system',style='List Number 2')
         document.add_paragraph('Update boot statement to reflect original IOS-XE release. ',style='List Number 2')
@@ -5000,6 +5208,27 @@ class TimeTaken:
             row_cells[1].text = str(time)
         document.add_page_break()
         return
+    def timeTaken_ASR_1000_17_03_05(self):
+        data = (
+        ("Update boot variable and Rommon upgrade", "10 minutes"),
+        ("FPGA upgrade for ASR1000-RP2","15 minutes"),
+        ("(Post boot checks)","5 minutes"),
+        ("Minimum downtime (for upgrade procedure)","25 minutes"),
+        ("Rollback procedure",""),
+        ("Update boot variable and Rommon upgrade","10 minutes"),
+        ("(Post boot checks)","5 minutes"),
+        ("Minimum downtime (during rollback procedure)","10 minutes")
+        )
+        table = document.add_table(rows=1, cols=2, style = 'Colorful Grid Accent 1')
+        row = table.rows[0].cells
+        row[0].text = "Section"
+        row[1].text = 'Time taken (in minutes)'
+        for section,time in data:
+            row_cells = table.add_row().cells
+            row_cells[0].text = str(section)
+            row_cells[1].text = str(time)
+        document.add_page_break()
+        return
 
 #Class for ISSU creation
 class IssuUpgrade(Formatter):
@@ -5007,6 +5236,25 @@ class IssuUpgrade(Formatter):
         self.os = os
         self.version = version
     def issuUpgrade_ASR_1000_17_03_03(self):
+        res = requests.get('https://www.cisco.com/c/en/us/td/docs/routers/asr1000/configuration/guide/chassis/asr1000-software-config-guide/issu-asr.html?referring_site=RE&pos=2&page=https://www.cisco.com/c/en/us/support/routers/asr-1000-series-aggregation-services-routers/products-installation-guides-list.html')
+        soup = BeautifulSoup(res.text, 'lxml')
+        try:
+            elem = soup.select('#con_1081725 > section')
+            data = elem[0].text.strip()
+            #d = re.split('Router#',data)
+            d = "Router#"
+            s =  [e for e in data.split(d) if e]
+            document.add_paragraph(s[0])
+            for j in s[1:]:
+                IssuUpgrade.funTable('Router#'+j)
+                document.add_paragraph('\n')
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            print(f"{e}(line {exc_tb.tb_lineno}): Some Data is missing in 'APPENDIX A: IN SERVICE SOFTWARE UPGRADE (ISSU)' section")
+
+        document.add_page_break()
+        return 
+    def issuUpgrade_ASR_1000_17_03_05(self):
         res = requests.get('https://www.cisco.com/c/en/us/td/docs/routers/asr1000/configuration/guide/chassis/asr1000-software-config-guide/issu-asr.html?referring_site=RE&pos=2&page=https://www.cisco.com/c/en/us/support/routers/asr-1000-series-aggregation-services-routers/products-installation-guides-list.html')
         soup = BeautifulSoup(res.text, 'lxml')
         try:
@@ -5357,6 +5605,44 @@ class Dynamic:
         num = 0
         headingwithcclass = {
                         "ASR 1000 17.03.03":{
+                        "Contents":"Contents",
+                        "About This Mop Document":"About",
+                        "History":"History",
+                        "Review":"Review",
+                        "Document Conventions":"DocumentConventions",
+                        f"{num} Introduction":"",
+                        "Preface":Preface.preface(devicename, pid,typeofdevice),
+                        "Audience":Audience.audience(cust),
+                        "Scope":Scope.scope(cust, devicename, version, os),
+                        "Target Process Steps":"targetProcessSteps",
+                        "Assumptions":Assumptions.assumptions(cust),
+                        "Related Documents":"relatedDocuments",
+                        f"{num} Preparation":"",
+                        "Install Analysis":"installAnalysis",
+                        f"Verify Current version of {os} & ROMMON":"iosVersion",
+                        "Available DRAM on the device":"availableDram",
+                        "Verify the Configuration Register and Free storage on Flash":"iosVersion",
+                        "Impact of downtime":f"The impact on service availability due to an access {typeofdevice} upgrade may vary depending on network topology and operational factors. Typically, connected devices will experience a service outage of a few minutes while the {typeofdevice} reloads with new software. \n\nConsideration should also be given to what (if any) recovery steps may be required in the event of a device failing to complete an upgrade. This is a particular concern for devices in remote or unmanned locations, where it may require significant time and resources to physically replace equipment. In extreme cases it may simply represent too high an operational risk to upgrade a unit in service.\nAn assessment should be made for each targeted device, or groups of similar devices, and an upgrade strategy for these should be agreed with the customer.",
+                        "Software image delivery":"It is anticipated that software images will be delivered to devices over the customer network. However, it may not be possible for all devices to access a single central software repository due to security constraints. As part of the install analysis process, an appropriate repository should be identified for each device.",
+                        "Reporting":"The output from this process should be a list of targeted devices, each indicating ‘pass’ or ‘fail’, with any additional caveats and information (for example, identified software repository). \nWhere devices are identified as ‘failed’, these will need to be investigated and remediated. For example, additional space may need to be cleared on the device’s flash memory",
+                        "Image Deployment and Validation":"imageDeploymentAndValidation",
+                        "Backup Current Configuration - Executed before Installation/change to boot image":"backupCurrentConfiguration",
+                        f"{num} Limitations And Restrictions":"limitationsAndRestrictions",
+                        f"{num} Upgrade":"",
+                        "Pre-install verification":"preInstallVerification",
+                        "Install and Reload":"installAndReload",
+                        "Upgrading the Device Software":"",
+                        "ROMMON Upgrades":"rommonUpgrade",
+                        f"Perform the {os} Upgrade":"osUpgrade",
+                        "Post-install Verification":"preInstallVerification",
+                        f"{num} Rollback Procedure":"rollbackProcedure",
+                        f"{num} Time taken for Change activities (Optional)":"timeTaken",
+                        f"{num} Appendix A: In Service Software Upgrade (ISSU)":"issuUpgrade",
+                        f"{num} Appendix B: Acronym Listing or Full Glossary":"acronymListing",
+                        "Trademarks and Disclaimer":"TrademarksandDisclaimer",
+                        "Document Acceptance":"DocumentAcceptance",
+                        },
+                        "ASR 1000 17.03.05":{
                         "Contents":"Contents",
                         "About This Mop Document":"About",
                         "History":"History",
