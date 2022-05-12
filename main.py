@@ -2204,35 +2204,50 @@ class IosVersion(Formatter):
                                       '             -             -   network     rw   https:\n'
                                       '             -             -    opaque     ro   cns:\n')
     def iosVersion_ASR_1000_17_03_05(self):
-        res = requests.get('https://www.cisco.com/c/en/us/td/docs/routers/asr1000/install/guide/1001-x/asr1hig-book/pwr_up_init_configuartion.html?referring_site=RE&pos=1&page=https://www.cisco.com/c/en/us/td/docs/routers/asr1000/quick/start/guide/asr1_qs1.html')
-        soup = BeautifulSoup(res.text, 'lxml')
-        try:
-            elem = soup.select('#con_1111409 > section > pre:nth-child(11) > code')
-            IosVersion.funTable(elem[0].text)
-        except Exception as e:
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            print(f"{e}(line {exc_tb.tb_lineno}): Some data is missing in 'IOS Version' section.")
+        IosVersion.funTable('Router#show version\n'
+                            'Cisco IOS XE Software, Version 03.16.07b.S - Extended Support Release\n'
+                            'Cisco IOS Software, ASR1000 Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 15.5(3)S7b, RELEASE SOFTWARE (fc1)\n'
+                            'Technical Support: http://www.cisco.com/techsupport\n'
+                            'Copyright (c) 1986-2018 by Cisco Systems, Inc.\n'
+                            'Compiled Fri 02-Mar-18 08:21 by mcpre\n'
+                            '\n'
+                            '\n'
+                            'Cisco IOS-XE software, Copyright (c) 2005-2018 by cisco Systems, Inc.\n'
+                            'All rights reserved.  Certain components of Cisco IOS-XE software are\n'
+                            'licensed under the GNU General Public License ("GPL") Version 2.0.  The\n'
+                            'software code licensed under GPL Version 2.0 is free software that comes\n'
+                            'with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such\n'
+                            'GPL code under the terms of GPL Version 2.0.  For more details, see the\n'
+                            'documentation or "License Notice" file accompanying the IOS-XE software,\n'
+                            'or the applicable URL provided on the flyer accompanying the IOS-XE\n'
+                            'software.\n'
+                            '\n'
+                            '\n'
+                            'ROM: IOS-XE ROMMON\n'
+                            '\n'
+                            'F241.06.18-ASR-1001X-1 uptime is 4 minutes\n'
+                            'Uptime for this control processor is 4 minutes\n'
+                            )
         document.add_paragraph('\n')
         IosVersion.funTable('Router#show file system\n'
-                                      'File Systems:\n'
-                                      '       Size(b)       Free(b)      Type  Flags  Prefixes\n'
-                                      '             -             -    opaque     rw   system:\n'
-                                      '             -             -    opaque     rw   tmpsys:\n'
-                                      '*  16420106240   15099944960      disk     rw   bootflash: flash\n'
-                                      '    1524695040    1445007360      disk     ro   webui:\n'
-                                      '             -             -    opaque     rw   null:\n'
-                                      '             -             -    opaque     ro   tar:\n'
-                                      '             -             -   network     rw   tftp:\n'
-                                      '      33554432      33551308     nvram     rw   nvram:\n'
-                                      '             -             -    opaque     wo   syslog:\n'
-                                      '             -             -   network     rw   rcp:\n'
-                                      '             -             -   network     rw   pram:\n'
-                                      '             -             -   network     rw   http:\n'
-                                      '             -             -   network     rw   ftp:\n'
-                                      '             -             -   network     rw   scp:\n'
-                                      '             -             -   network     rw   sftp:\n'
-                                      '             -             -   network     rw   https:\n'
-                                      '             -             -    opaque     ro   cns:\n')
+                            'File Systems:\n'
+                            '\n'
+                            '       Size(b)       Free(b)      Type  Flags  Prefixes\n'
+                            '             -             -    opaque     rw   system:\n'
+                            '             -             -    opaque     rw   tmpsys:\n'
+                            '*   6646632448     355688448      disk     rw   bootflash:\n'
+                            '    6646632448     355688448      disk     rw   flash:\n'
+                            '             -             -    opaque     rw   null:\n'
+                            '             -             -    opaque     ro   tar:\n'
+                            '             -             -   network     rw   tftp:\n'
+                            '             -             -    opaque     wo   syslog:\n'
+                            '      33554432      32691574     nvram     rw   nvram:\n'
+                            '             -             -   network     rw   rcp:\n'
+                            '             -             -   network     rw   ftp:\n'
+                            '             -             -   network     rw   http:\n'
+                            '             -             -   network     rw   scp:\n'
+                            '             -             -   network     rw   https:\n'
+                            '             -             -    opaque     ro   cns:')
 
     def iosVersion_Switch_Catalyst_9600_17_06_02(self):
         res = requests.get('https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9600/software/release/17-6/release_notes/ol-17-6-9600.html#concept_ycv_jdf_3mb')
@@ -2512,6 +2527,80 @@ class ConfigurationRegister(Formatter):
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             print(f"{e}(line {exc_tb.tb_lineno}): Some data is missing in 'Verify the Configuration Register' section")
+    def configurationRegister_ASR_1000_17_03_05(self):
+        IosVersion.funTable('Router#show version\n'
+                            'Cisco IOS XE Software, Version 03.16.07b.S - Extended Support Release\n'
+                            'Cisco IOS Software, ASR1000 Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 15.5(3)S7b, RELEASE SOFTWARE (fc1)\n'
+                            'Technical Support: http://www.cisco.com/techsupport\n'
+                            'Copyright (c) 1986-2018 by Cisco Systems, Inc.\n'
+                            'Compiled Fri 02-Mar-18 08:21 by mcpre\n'
+                            '\n'
+                            '\n'
+                            'Cisco IOS-XE software, Copyright (c) 2005-2018 by cisco Systems, Inc.\n'
+                            'All rights reserved.  Certain components of Cisco IOS-XE software are\n'
+                            'licensed under the GNU General Public License ("GPL") Version 2.0.  The\n'
+                            'software code licensed under GPL Version 2.0 is free software that comes\n'
+                            'with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such\n'
+                            'GPL code under the terms of GPL Version 2.0.  For more details, see the\n'
+                            'documentation or "License Notice" file accompanying the IOS-XE software,\n'
+                            'or the applicable URL provided on the flyer accompanying the IOS-XE\n'
+                            'software.\n'
+                            '\n'
+                            '\n'
+                            'ROM: IOS-XE ROMMON\n'
+                            '\n'
+                            'F241.06.18-ASR-1001X-1 uptime is 4 minutes\n'
+                            'Uptime for this control processor is 4 minutes\n'
+                            'System returned to ROM by reload\n'
+                            'System image file is "tftp:images/rls_3_12_nightster/asr1001x-universalk9.03.16.07b.S.155-3.S7b-ext"\n'
+                            'Last reload reason: Reload Command\n'
+                            'This product contains cryptographic features and is subject to United\n'
+                            'States and local country laws governing import, export, transfer and\n'
+                            'use. Delivery of Cisco cryptographic products does not imply\n'
+                            'third-party authority to import, export, distribute or use encryption.\n'
+                            'Importers, exporters, distributors and users are responsible for\n'
+                            'compliance with U.S. and local country laws. By using this product you\n'
+                            'agree to comply with applicable laws and regulations. If you are unable\n'
+                            'to comply with U.S. and local laws, return this product immediately.\n'
+                            'A summary of U.S. laws governing Cisco cryptographic products may be found at:\n'
+                            'http://www.cisco.com/wwl/export/crypto/tool/stqrg.html\n'
+                            'If you require further assistance please contact us by sending email to\n'
+                            'export@cisco.com.\n'
+                            'License Level: adventerprise\n'
+                            'License Type: Permanent\n'
+                            'Next reload license Level: adventerprise\n'
+                            'cisco ASR1001-X (1NG) processor with 6837243K/6147K bytes of memory.\n'
+                            'Processor board ID JAE17460APT\n'
+                            '6 Gigabit Ethernet interfaces\n'
+                            '3 Ten Gigabit Ethernet interfaces\n'
+                            '32768K bytes of non-volatile configuration memory.\n'
+                            '16777216K bytes of physical memory.\n'
+                            '6684671K bytes of eUSB flash at bootflash:.\n'
+                            'Configuration register is 0x0\n'
+                            'Router#\n'
+                            '\n'
+                            )
+        document.add_paragraph('\n')
+        IosVersion.funTable('Router#show file system\n'
+                            'File Systems:\n'
+                            '\n'
+                            '       Size(b)       Free(b)      Type  Flags  Prefixes\n'
+                            '             -             -    opaque     rw   system:\n'
+                            '             -             -    opaque     rw   tmpsys:\n'
+                            '*   6646632448     355688448      disk     rw   bootflash:\n'
+                            '    6646632448     355688448      disk     rw   flash:\n'
+                            '             -             -    opaque     rw   null:\n'
+                            '             -             -    opaque     ro   tar:\n'
+                            '             -             -   network     rw   tftp:\n'
+                            '             -             -    opaque     wo   syslog:\n'
+                            '      33554432      32691574     nvram     rw   nvram:\n'
+                            '             -             -   network     rw   rcp:\n'
+                            '             -             -   network     rw   ftp:\n'
+                            '             -             -   network     rw   http:\n'
+                            '             -             -   network     rw   scp:\n'
+                            '             -             -   network     rw   https:\n'
+                            '             -             -    opaque     ro   cns:')
+
 
 #AvailableDram
 class AvailableDram(Formatter):
@@ -2540,26 +2629,26 @@ class AvailableDram(Formatter):
                                       '             -             -   network     rw   https:\n'
                                       '             -             -    opaque     ro   cns:\n')
     def availableDram_ASR_1000_17_03_05(self):
-        return AvailableDram.funTable('Router#show file system\n'
-                                      'File Systems:\n'
-                                      '       Size(b)       Free(b)      Type  Flags  Prefixes\n'
-                                      '             -             -    opaque     rw   system:\n'
-                                      '             -             -    opaque     rw   tmpsys:\n'
-                                      '*  16420106240   15099944960      disk     rw   bootflash: flash\n'
-                                      '    1524695040    1445007360      disk     ro   webui:\n'
-                                      '             -             -    opaque     rw   null:\n'
-                                      '             -             -    opaque     ro   tar:\n'
-                                      '             -             -   network     rw   tftp:\n'
-                                      '      33554432      33551308     nvram     rw   nvram:\n'
-                                      '             -             -    opaque     wo   syslog:\n'
-                                      '             -             -   network     rw   rcp:\n'
-                                      '             -             -   network     rw   pram:\n'
-                                      '             -             -   network     rw   http:\n'
-                                      '             -             -   network     rw   ftp:\n'
-                                      '             -             -   network     rw   scp:\n'
-                                      '             -             -   network     rw   sftp:\n'
-                                      '             -             -   network     rw   https:\n'
-                                      '             -             -    opaque     ro   cns:\n')
+        document.add_paragraph('The below command displays the amount space available within flash. When copying over the new image to the device this is where the image is kept. It may be necessary to delete existing files from the device to free up more space. Use the show file system privileged EXEC command to list all file systems')
+        AvailableDram.funTable('Router#show file system\n'
+                               'File Systems:\n'
+                               '\n'
+                               '       Size(b)       Free(b)      Type  Flags  Prefixes\n'
+                               '             -             -    opaque     rw   system:\n'
+                               '             -             -    opaque     rw   tmpsys:\n'
+                               '*   6646632448     355688448      disk     rw   bootflash:\n'
+                               '    6646632448     355688448      disk     rw   flash:\n'
+                               '             -             -    opaque     rw   null:\n'
+                               '             -             -    opaque     ro   tar:\n'
+                               '             -             -   network     rw   tftp:\n'
+                               '             -             -    opaque     wo   syslog:\n'
+                               '      33554432      32691574     nvram     rw   nvram:\n'
+                               '             -             -   network     rw   rcp:\n'
+                               '             -             -   network     rw   ftp:\n'
+                               '             -             -   network     rw   http:\n'
+                               '             -             -   network     rw   scp:\n'
+                               '             -             -   network     rw   https:\n'
+                               '             -             -    opaque     ro   cns:')
     def availableDram_Switch_Catalyst_9600_17_06_02(self):
         document.add_paragraph('The below command displays the amount space available within flash. When copying over the new image to the device this is where the image is kept. It may be necessary to delete existing files from the device to free up more space. Use the show file system privileged EXEC command to list all file systems')
         AvailableDram.funTable('Switch# show file systems\n'
@@ -2741,6 +2830,17 @@ class ImageDeploymentAndValidation(Formatter):
         document.add_paragraph('Go to software download page and map to Download Home and map to the relevant image for the upgrade ', style='List Number 2')
         document.add_paragraph('Take a note of the MD5 checksum and download the new image file. ',   style='List Number 2')
         document.add_paragraph('Run the below command: ',   style='List Number 2')
+        ImageDeploymentAndValidation.funTable('Router# verify /md5 flash: asr1001x-universalk9.17.03.05.SPA.bin'
+                                                '...................................................................................'
+                                                '...........................................'
+                                                '........................................'
+                                                '...................................................................................'
+                                                '................................................'
+                                                '................................... '
+                                                '...............................................'
+                                                '...................................'
+                                                '................................ ...........Done! \n'
+                                                'verify /md5 (flash: asr1001x-universalk9.17.03.05.SPA.bin) =08c4c732e70ae272980fbbe092d8debb')
         document.add_page_break()
 
     def imageDeploymentAndValidation_Switch_Catalyst_9600_17_06_02(self):
@@ -3138,7 +3238,7 @@ class PreInstallVerification(Formatter):
                                         'show log\n'
                                         'term len 30')
         document.add_paragraph('\n')
-        PreInstallVerification.funTable('ASR1002-1#sh bootflash: | i .bin'
+        PreInstallVerification.funTable('ASR1001-X#sh bootflash: | i .bin'
                    '\n18 393419388 Oct 09 2019 21:56:37 +00:00 /bootflash/asr1000rp1-advipservicesk9.03.16.06.S.155-3.S6-ext.bin'
                    '\n24 389286512 Jun 21 2021 22:38:49 +00:00 /bootflash/asr1000rp1-adventerprise.03.16.10.S.155-3.S10-ext.bin'
                    '\n27 395158140 Aug 31 2020 14:29:31 +00:00 /bootflash/asr1000rp1-adventerprisek9.03.16.08.S.155-3.S8-ext.bin'
@@ -4976,13 +5076,35 @@ class OsUpgrade(Formatter):
         p = document.add_paragraph("\n")
         p.add_run('Step 1').bold = True
         p.add_run(" Copy new image to flash\nCopy the system image to the master switch flash memory with a transfer protocol. You can use ftp:,\ntftp:, scp:, or sftp:. The examples in this procedure uses TFTP:").italic = False 
-        OsUpgrade.funTable("")
+        OsUpgrade.funTable("Router#copy tftp: bootflash:\n"
+                           "Address or name of remote host [10.207.204.10]? 10.207.204.10\n"
+                           "Source filename [F241.06.18-ASR-1001X-1#copy]? asr1001x-universalk9.17.03.05.SPA.bin\n"
+                           "Destination filename [asr1001x-universalk9.17.03.05.SPA.bin]?\n"
+                           "%Warning:There is a file already existing with this name\n"
+                           "Do you want to over write? [confirm]\n"
+                           "Accessing tftp://10.207.204.10/asr1001x-universalk9.17.03.05.SPA.bin...\n"
+                           "Loading asr1001x-universalk9.17.03.05.SPA.bin from 10.207.204.10 (via GigabitEthernet0): !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+                           "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+                           "[OK - 905521973 bytes]\n")
         document.add_paragraph("Use dir flash: to confirm that the image has been successfully copied to flash.") 
-        OsUpgrade.funTable("")          
+        OsUpgrade.funTable("Router#dir flash:*.bin\n"
+                           "Directory of flash:/*.bin\n"
+                           "\n"
+                           "Directory of flash:/\n"
+                           "\n"
+                           "   16  -rw-   905521973  May 12 2022 00:59:26 +00:00  asr1001x-universalk9.17.03.05.SPA.bin\n"
+                           "   19  -rw-   904167865  Jun 30 2021 19:31:39 +00:00  asr1001x-universalk9.17.03.03.SPA.bin\n"
+                           "   25  -rw-   756454504   Sep 4 2021 09:10:36 +00:00  asr1001x-universalk9.16.09.02.SPA.bin\n"
+                           "   22  -rw-   909520480  Feb 16 2022 06:42:11 +00:00  asr1000-universalk9.17.03.04a.SPA.bin\n"
+                           "   29  -rw-   812620189  Jan 13 2022 01:40:46 +00:00  asr1001x-universalk9.16.12.05.SPA.bin\n"
+                           "   15  -rw-   718621419  Apr 30 2022 21:09:03 +00:00  asr1001x-universalk9.16.07.01.SPA.bin\n"
+                           "   17  -rw-   519650148  May 11 2022 23:49:32 +00:00  asr1001x-universalk9.03.16.07b.S.155-3.S7b-ext.SPA.bin\n"
+                           "   28  -rw-    22753940  Feb 17 2022 00:59:51 +00:00  ASR1K-fpga_prog.16.0.1.xe.bin\n"
+                           "6646632448 bytes total (355688448 bytes free")          
         p = document.add_paragraph("\n")
         p.add_run('Step 2').bold = True
         p.add_run(" Set boot variable").italic = False
-        OsUpgrade.funTable('')
+        OsUpgrade.funTable('Router(config)# boot system flash bootflash:asr1001x-universalk9.17.03.05.SPA.bin')
         r = document.add_paragraph('\n').add_run()
         try:
             r.add_picture('note.jpg',width=Inches(0.3), height=Inches(.3))
@@ -4990,19 +5112,128 @@ class OsUpgrade(Formatter):
         except OSError as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             print(f"{e}(line {exc_tb.tb_lineno}): Image not Found...")
-        OsUpgrade.funTable("")
+        OsUpgrade.funTable("Router(config)# boot system flash bootflash:asr1001x-universalk9.03.16.07b.S.155-3.S7b-ext.SPA")
         p = document.add_paragraph('\n')
         p.add_run('Step 3').bold = True
         p.add_run(" write memory\nUse this command to save boot settings.").italic = False 
-        OsUpgrade.funTable("")
+        OsUpgrade.funTable("Router#write memory\n"
+                           "Building configuration...\n"
+                           "[OK]\n"
+                           "")
         p = document.add_paragraph("\n")
         p.add_run('Step 4').bold = True
         p.add_run(" show bootvar or show boot\nUse this command to verify the boot variable (packages.conf) and manual boot setting (no):").italic = False 
-        OsUpgrade.funTable("")
+        OsUpgrade.funTable("Router#sh bootvar\n"
+                           "BOOT variable = bootflash:asr1001x-universalk9.17.03.05.SPA.bin,1;bootflash:asr1001x-universalk9.03.16.07b.S.155-3.S7b-ext.SPA,1;\n"
+                           "CONFIG_FILE variable does not exist\n"
+                           "BOOTLDR variable does not exist\n"
+                           "Configuration register is 0x2102\n"
+                           "Standby not ready to show bootvar\n"
+                           "")
         p = document.add_paragraph("\n")
         p.add_run('Step 5').bold = True
         p.add_run(" reload").italic = False
-        OsUpgrade.funTable("")
+        OsUpgrade.funTable("Router#reload\n"
+                           "Proceed with reload? [confirm]\n"
+                           "May 12 01:05:28.636 R0/0: %PMAN-5-EXITACTION: Process manager is exiting: process exit with reload chassis code\n"
+                           "\n"
+                           "\n"
+                           "Initializing Hardware ...\n"
+                           "\n"
+                           "System integrity status: 00000610\n"
+                           "U\n"
+                           "\n"
+                           "System Bootstrap, Version 17.3(1r), RELEASE SOFTWARE\n"
+                           "Copyright (c) 1994-2020  by cisco Systems, Inc.\n"
+                           "\n"
+                           "Current image running: Boot ROM0\n"
+                           "Last reset cause: LocalSoft\n"
+                           "\n"
+                           "ASR1001-X platform with 8388608 Kbytes of main memory\n"
+                           "\n"
+                           "File size is 0x35f92b35\n"
+                           "Located asr1001x-universalk9.17.03.05.SPA.bin\n"
+                           "Image size 905521973 inode num 16, bks cnt 221075 blk size 8*512\n"
+                           "##############################################################################################################################\n"
+                           "#############################################################################################################################################\n"
+                           "#################################################################################################################################################\n"
+                           "#######################################################################\n"
+                           "<snip>\n"
+                           "Boot image size = 905521973 (0x35f92b35) bytes\n"
+                           "\n"
+                           "ROM:RSA Self Test Passed\n"
+                           "ROM:Sha512 Self Test Passed\n"
+                           "\n"
+                           "Package header rev 1 structure detected\n"
+                           "Validating main package signatures\n"
+                           "\n"
+                           "RSA Signed RELEASE Image Signature Verification Successful.\n"
+                           "Image validated\n"
+                           "May 12 01:09:33.404: %BOOT-5-OPMODE_LOG: R0/0: binos: System booted in AUTONOMOUS mode\n"
+                           "\n"
+                           "              Restricted Rights Legend\n"
+                           "\n"
+                           "Use, duplication, or disclosure by the Government is\n"
+                           "subject to restrictions as set forth in subparagraph\n"
+                           "(c) of the Commercial Computer Software - Restricted\n"
+                           "Rights clause at FAR sec. 52.227-19 and subparagraph\n"
+                           "(c) (1) (ii) of the Rights in Technical Data and Computer\n"
+                           "Software clause at DFARS sec. 252.227-7013.\n"
+                           "\n"
+                           "           Cisco Systems, Inc.\n"
+                           "           170 West Tasman Drive\n"
+                           "           San Jose, California 95134-1706\n"
+                           "\n"
+                           "\n"
+                           "\n"
+                           "Cisco IOS Software [Amsterdam], ASR1000 Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 17.3.5, RELEASE SOFTWARE (fc2)\n"
+                           "Technical Support: http://www.cisco.com/techsupport\n"
+                           "Copyright (c) 1986-2022 by Cisco Systems, Inc.\n"
+                           "Compiled Wed 09-Feb-22 10:37 by mcpre\n"
+                           "\n"
+                           "\n"
+                           "This software version supports only Smart Licensing as the software licensing mechanism.\n"
+                           "\n"
+                           "\n"
+                           "PLEASE READ THE FOLLOWING TERMS CAREFULLY. INSTALLING THE LICENSE OR\n"
+                           "LICENSE KEY PROVIDED FOR ANY CISCO SOFTWARE PRODUCT, PRODUCT FEATURE,\n"
+                           "AND/OR SUBSEQUENTLY PROVIDED SOFTWARE FEATURES (COLLECTIVELY, THE\n"
+                           "\"SOFTWARE\"), AND/OR USING SUCH SOFTWARE CONSTITUTES YOUR FULL\n"
+                           "ACCEPTANCE OF THE FOLLOWING TERMS. YOU MUST NOT PROCEED FURTHER IF YOU\n"
+                           "ARE NOT WILLING TO BE BOUND BY ALL THE TERMS SET FORTH HEREIN.\n"
+                           "\n"
+                           "Your use of the Software is subject to the Cisco End User License Agreement\n"
+                           "(EULA) and any relevant supplemental terms (SEULA) found at\n"
+                           "http://www.cisco.com/c/en/us/about/legal/cloud-and-software/software-terms.html.\n"
+                           "\n"
+                           "You hereby acknowledge and agree that certain Software and/or features are\n"
+                           "licensed for a particular term, that the license to such Software and/or\n"
+                           "features is valid only for the applicable term and that such Software and/or\n"
+                           "features may be shut down or otherwise terminated by Cisco after expiration\n"
+                           "of the applicable license term (e.g., 90-day trial period). Cisco reserves\n"
+                           "the right to terminate any such Software feature electronically or by any\n"
+                           "other means available. While Cisco may provide alerts, it is your sole\n"
+                           "responsibility to monitor your usage of any such term Software feature to\n"
+                           "ensure that your systems and networks are prepared for a shutdown of the\n"
+                           "Software feature.\n"
+                           "\n"
+                           "\n"
+                           "\n"
+                           "All TCP AO KDF Tests Pass\n"
+                           "cisco ASR1001-X (1NG) processor (revision 1NG) with 3756612K/6147K bytes of memory.\n"
+                           "Processor board ID FXS2308Q3J4\n"
+                           "Router operating mode: Autonomous\n"
+                           "11 Gigabit Ethernet interfaces\n"
+                           "2 Ten Gigabit Ethernet interfaces\n"
+                           "32768K bytes of non-volatile configuration memory.\n"
+                           "8388608K bytes of physical memory.\n"
+                           "6594559K bytes of eUSB flash at bootflash:.\n"
+                           "\n"
+                           " WARNING: Command has been added to the configuration using a type 0 password. However, type 0 passwords will soon be deprecated. Migrate to a supported password type\n"
+                           " WARNING: Command has been added to the configuration using a type 0 password. However, type 0 passwords will soon be deprecated. Migrate to a supported password type\n"
+                           "\n"
+                           "\n"
+                           "Press RETURN to get started!\n")
     def osUpgrade_Switch_Catalyst_9600_17_06_02(self):
         return
 
@@ -5462,6 +5693,22 @@ class AcronymListing:
             row_cells[1].text = str(definition)
         #document.add_page_break()
         return
+    def acronymListing_ASR_1000_17_03_05(self):
+        acronyms = (
+                   ('ASR','Aggregation Services Routers'),
+                   ('IOS','Internetwork Operating System'),
+                   ('ROMMON','Read Only Memory Monitor')
+                   )
+        table = document.add_table(rows=1, cols=2,style='Colorful Grid Accent 1')
+        hdr_cells = table.rows[0].cells
+        hdr_cells[0].text = 'Term'
+        hdr_cells[1].text = 'Definition'
+        for term,definition in acronyms:
+            row_cells = table.add_row().cells
+            row_cells[0].text = str(term)
+            row_cells[1].text = str(definition)
+        #document.add_page_break()
+        return
     def acronymListing_Switch_Catalyst_9600_17_06_02(self):
         acronyms = (
                    ('IOS','Internetwork Operating System'),
@@ -5659,7 +5906,7 @@ class Dynamic:
                         "Install Analysis":"installAnalysis",
                         f"Verify Current version of {os} & ROMMON":"iosVersion",
                         "Available DRAM on the device":"availableDram",
-                        "Verify the Configuration Register and Free storage on Flash":"iosVersion",
+                        "Verify the Configuration Register and Free storage on Flash":"configurationRegister",
                         "Impact of downtime":f"The impact on service availability due to an access {typeofdevice} upgrade may vary depending on network topology and operational factors. Typically, connected devices will experience a service outage of a few minutes while the {typeofdevice} reloads with new software. \n\nConsideration should also be given to what (if any) recovery steps may be required in the event of a device failing to complete an upgrade. This is a particular concern for devices in remote or unmanned locations, where it may require significant time and resources to physically replace equipment. In extreme cases it may simply represent too high an operational risk to upgrade a unit in service.\nAn assessment should be made for each targeted device, or groups of similar devices, and an upgrade strategy for these should be agreed with the customer.",
                         "Software image delivery":"It is anticipated that software images will be delivered to devices over the customer network. However, it may not be possible for all devices to access a single central software repository due to security constraints. As part of the install analysis process, an appropriate repository should be identified for each device.",
                         "Reporting":"The output from this process should be a list of targeted devices, each indicating ‘pass’ or ‘fail’, with any additional caveats and information (for example, identified software repository). \nWhere devices are identified as ‘failed’, these will need to be investigated and remediated. For example, additional space may need to be cleared on the device’s flash memory",
